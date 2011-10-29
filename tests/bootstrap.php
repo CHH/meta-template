@@ -5,6 +5,12 @@ require_once __DIR__ . "/../vendor/Symfony/Component/ClassLoader/UniversalClassL
 use Symfony\Component\ClassLoader\UniversalClassLoader;
 
 $classLoader = new UniversalClassLoader;
+
 $classLoader->registerNamespace('Symfony', realpath(__DIR__ . "/../vendor/Symfony"));
+
+$classLoader->registerNamespace('MetaTemplate', array(
+    realpath(__DIR__ . '/../lib'),
+    realpath(__DIR__)
+));
 
 $classLoader->register();
