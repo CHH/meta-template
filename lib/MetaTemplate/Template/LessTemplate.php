@@ -6,20 +6,12 @@ use Symfony\Component\Process\Process;
 
 class LessTemplate extends Base
 {
-    protected $outputFile;
-
-    function __construct($file, array $options = array(), $reader = null)
-    {
-        $this->file = $file;
-        $this->options = $options;
-    }
-
     static function getDefaultContentType()
     {
         return "text/css";
     }
 
-    protected function evaluate($context, $vars = null)
+    function render($context = null, $vars = array())
     {
         $options = $this->options;
 
@@ -29,9 +21,16 @@ class LessTemplate extends Base
         $compress = isset($options['compress']) 
             ? $options['compress'] : false;
 
-        $outputFile = tempnam(sys_get_temp_dir(), 'pipe_less_output');
+        if ($this->isFile()) {
+            $inputFile = $this->source;
+        } else {
+            $inputFile = tempnam(sys_get_temp_dir(), 'metatemplate_template_less_input');
+            file_put_contents($inputFile, $this->data);
+        }
 
-        $cmd = $lessBin.' '.$this->file.' '.$outputFile;
+        $outputFile = tempnam(sys_get_temp_dir(), 'metatemplate_template_less_output');
+
+        $cmd = $lessBin.' '.$inputFile.' '.$outputFile;
 
         if ($compress) {
             $cmd .= ' -x';
@@ -44,15 +43,15 @@ class LessTemplate extends Base
         ));
 
         $process->run();
+        $content = file_get_contents($outputFile);
+
+        unlink($outputFile);
 
         if (!$process->isSuccessful()) {
             throw new \RuntimeException(
                 "lessc returned an error: " . $process->getErrorOutput()
             );
         }
-
-        $content = file_get_contents($outputFile);
-        unlink($outputFile);
 
         return $content;
     }

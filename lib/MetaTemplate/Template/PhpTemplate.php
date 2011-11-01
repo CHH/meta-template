@@ -6,13 +6,13 @@ class PHPTemplate extends Base
 {
     protected $templates = array();
 
-    protected function evaluate($context, array $vars = array())
+    function render($context = null, $vars = array())
     {
         $template = $this->getTemplateClass($vars);
         return $template->render($context, $vars);
     }
 
-    protected function getTemplateClass(array $locals)
+    protected function getTemplateClass($locals)
     {
         $key = join(',', array_keys($locals));
 
@@ -25,7 +25,7 @@ class PHPTemplate extends Base
     protected function compileTemplateClass(array $locals)
     {
         $id = $this->getCacheId($locals);
-        $templateClass = "\\MetaTemplate\\Template\\PHPTemplate\\Template_$id";
+        $templateClass = "\\MetaTemplate\\Template\\PrecompiledPHPTemplate\\Template_$id";
 
         if (class_exists($templateClass)) {
             return;
@@ -48,7 +48,7 @@ class PHPTemplate extends Base
         return md5($this->getPreamble($vars).$this->data);
     }
 
-    function getPrecompiled(array $vars = array())
+    protected function getPrecompiled(array $vars = array())
     {
         $tokens = token_get_all($this->data);
         $compiled = '';
@@ -95,7 +95,7 @@ class PHPTemplate extends Base
         return $compiled;
     }
 
-    protected function getPreamble(array $vars = array()) 
+    protected function getPreamble($vars = array()) 
     {
         $preamble = '';
         foreach ($vars as $var => $value) {
@@ -109,11 +109,9 @@ class PHPTemplate extends Base
     protected function getTemplateTemplate()
     {
         $template = <<<'TEMPLATE'
-namespace MetaTemplate\Template\PHPTemplate;
+namespace MetaTemplate\Template\PrecompiledPHPTemplate;
 
-use MetaTemplate\Template\PHPTemplateContext;
-
-class Template_%s extends PHPTemplateContext
+class Template_%s extends \MetaTemplate\Template\PrecompiledPHPTemplate
 {
     function evaluate(array $locals)
     {
@@ -129,7 +127,7 @@ TEMPLATE;
 /**
  * The Base Class for all compiled templates.
  */
-abstract class PHPTemplateContext
+abstract class PrecompiledPHPTemplate implements TemplateInterface
 {
     /**
      * Template Context, all method calls get forwarded
@@ -139,7 +137,7 @@ abstract class PHPTemplateContext
      */
     protected $context;
 
-    function render($context = null, array $locals = array())
+    function render($context = null, $locals = array())
     {
         if (null === $context) {
             $context = new \StdClass;
@@ -148,9 +146,7 @@ abstract class PHPTemplateContext
         $this->context = $context;
 
         ob_start();
-        
         $this->evaluate($locals);
-
         $content = ob_get_clean();
         return $content;
     }

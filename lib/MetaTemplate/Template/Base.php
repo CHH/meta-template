@@ -4,7 +4,11 @@ namespace MetaTemplate\Template;
 
 class Base
 {
-    protected $file;
+    /**
+     * Path of the source file (if any)
+     * @var string
+     */
+    public $source;
 
     /**
      * Template's content
@@ -14,42 +18,26 @@ class Base
 
     /**
      * Engine specific options
-     * @var array
      */
-    protected $options;
-
-    /**
-     * Indicates that the underlying template engine (if any) 
-     * is initialized, this happens only once
-     * @var boolean
-     */
-    static protected $engineInitialized = false;
+    protected $options = array();
 
     /**
      * Constructor
      *
-     * @param string   $file     Template File Name
-     * @param array    $options  Engine Options
+     * @param string $reader Callback which returns the template's 
+     *   contents or the template's file name
+     * @param array  $options  Engine Options
      */
-    function __construct($file, array $options = array())
+    function __construct($reader, $options = array())
     {
-        $this->file = $file;
         $this->options = $options;
-
-        $reader = isset($options['reader']) ? $options['reader'] : null;
-        unset($options['reader']);
 
         if (is_callable($reader)) {
             $this->data = call_user_func($reader, $this);
 
-        } else if (file_exists($file) and is_readable($file)) {
-            $this->data = @file_get_contents($this->file);
-        }
-
-        // Call the initializ
-        if (!static::$engineInitialized) {
-            $this->initEngine();
-            static::$engineInitialized = true;
+        } else if (file_exists($reader) and is_readable($reader)) {
+            $this->source = $reader;
+            $this->data = @file_get_contents($reader);
         }
 
         $this->prepare();
@@ -61,54 +49,13 @@ class Base
     protected function prepare()
     {}
 
-    /**
-     * Called only once to initialize underlying engine, for example
-     * require it.
-     */
-    protected function initEngine()
-    {}
-
-    /**
-     * Renders the template and returns its content
-     * 
-     * @param  array $data
-     * @return string
-     */
-    function render($scope = null, array $vars = array())
-    {
-        if (null === $scope) {
-            $scope = new \StdClass;
-        }
-        return $this->evaluate($scope, $vars);
-    }
-
-    protected function evaluate($scope, array $vars = array())
-    {
-        return $this->getData();
-    }
-
     function getData()
     {
         return $this->data;
     }
 
-    function getLastModified()
+    function isFile()
     {
-        if ($this->file) return filemtime($this->file);
-    }
-
-    function getFile()
-    {
-        return $this->file;
-    }
-
-    function getBasename()
-    {
-        if ($this->file) return basename($this->file);
-    }
-
-    function getDirname()
-    {
-        if ($this->file) return dirname($this->file);
+        return null !== $this->source and file_exists($this->source);
     }
 }

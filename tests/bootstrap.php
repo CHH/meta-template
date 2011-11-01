@@ -6,7 +6,7 @@ use Symfony\Component\ClassLoader\UniversalClassLoader;
 
 $classLoader = new UniversalClassLoader;
 
-$classLoader->registerNamespace('Symfony', realpath(__DIR__ . "/../vendor/Symfony"));
+$classLoader->registerNamespace('Symfony', realpath(__DIR__ . "/../vendor/"));
 
 $classLoader->registerNamespace('MetaTemplate', array(
     realpath(__DIR__ . '/../lib'),
