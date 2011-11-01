@@ -39,10 +39,6 @@ class PHPTemplate extends Base
         return new $templateClass;
     }
 
-    protected function prepare()
-    {
-    }
-
     function getCacheId(array $vars = array())
     {
         return md5($this->getPreamble($vars).$this->data);
