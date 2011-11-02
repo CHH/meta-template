@@ -24,7 +24,7 @@ class Template
      */
     static function get($template)
     {
-        $ext = pathinfo($template, PATHINFO_EXTENSION);
+        $ext = pathinfo(basename($template), PATHINFO_EXTENSION);
         return static::getEngines()->get($ext);
     }
 
@@ -64,6 +64,14 @@ class Template
         }
         return $extension;
     }
+
+    static function setupDefaultEngines()
+    {
+        static::register('\\MetaTemplate\\Template\\PHPTemplate', array('php', 'phtml'));
+        static::register('\\MetaTemplate\\Template\\LessTemplate', 'less');
+        static::register('\\MetaTemplate\\Template\\MarkdownTemplate', array('markdown', 'md'));
+    }
 }
 
-Template::register('\\MetaTemplate\\Template\\PhpTemplate', array('php', 'phtml'));
+Template::setupDefaultEngines();
+
