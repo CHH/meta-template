@@ -2,7 +2,7 @@
 
 namespace MetaTemplate\Template;
 
-class Base
+abstract class Base implements TemplateInterface
 {
     /**
      * Path of the source file (if any)

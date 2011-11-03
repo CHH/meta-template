@@ -21,12 +21,10 @@ class EngineRegistry
             throw new \InvalidArgumentException("Class $engine is not defined");
         }
 
-        if (!is_subclass_of($engine, "\\MetaTemplate\\Template\\Base")) {
-            throw new \InvalidArgumentException(sprintf(
-                "An engine must be a subclass of \\MetaTemplate\\Template\\Base, subclass 
-                of %s given",
-                get_parent_class($engine)
-            ));
+        if (!class_implements($engine, "\\MetaTemplate\\Template\\TemplateInterface")) {
+            throw new \InvalidArgumentException(
+                "An engine must implement \\MetaTemplate\\Template\\TemplateInterface."
+            );
         }
 
         $extensions = (array) $extension;
