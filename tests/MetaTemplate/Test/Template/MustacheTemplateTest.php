@@ -6,6 +6,13 @@ use MetaTemplate\Template\MustacheTemplate;
 
 class MustacheTemplateTest extends \PHPUnit_Framework_TestCase
 {
+    function setUp()
+    {
+        if (!isset($_ENV['MUSTACHE_LIB'])) {
+            $this->markTestSkipped('Set MUSTACHE_LIB in the phpunit config file to run this test');
+        }
+    }
+
     function test()
     {
         $templ = new MustacheTemplate(function() {

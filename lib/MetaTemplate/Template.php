@@ -6,6 +6,7 @@ use MetaTemplate\Util\EngineRegistry;
 
 class Template
 {
+    /** @var EngineRegistry */
     static protected $engines;
 
     static function getEngines()
