@@ -25,8 +25,8 @@ MetaTemplate ships with these adapters/engines by default:
    [php-markdown](http://github.com/michelf/php-markdown) to be loaded), mapped to
    `.md` and `.markdown`
  * `LessTemplate` (requires Less to be installed via node), mapped to
-   `.less`
- * `MustacheTempate` (requires
+   `.less` (Requires Symfony_Process 2)
+ * `MustacheTemplate` (requires
    [phly_mustache](http://github.com/weierophinney/phly_mustache)),
    mapped to `.mustache`
 
@@ -59,6 +59,24 @@ These two arguments allow to inject the data into the template script.
 If the templating engine does not have to support contexts or locals, 
 these two arguments are simply ignored. This is the case with the
 Markdown and Less engines.
+
+## Digging one layer deeper
+
+If want to setup all engine mappings up by yourself and have no
+default setup of Engines, then the `MetaTemplate\Util\EngineRegistry`
+is for you.
+
+This class simply provides the instance behind the static methods of 
+the `MetaTemplate\Template` class.
+
+To map a template class to one or more file extensions, just call
+the `register` method the same way you would on the `Template` class:
+
+    $registry = new \MetaTemplate\Util\EngineRegistry;
+    $registry->register('\\MetaTemplate\\Template\\LessTemplate', 'less');
+
+You can then use the `create` method to create new Template instances
+for the provided path.
 
 ## Writing your own engines
 

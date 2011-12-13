@@ -34,7 +34,7 @@ class Template
      *
      * @param  string $template
      * @param  array  $options  Engine Options to pass to the constructor
-     * @return \Pipe\Template\Base
+     * @return \MetaTemplate\Template\Base
      */
     static function create($template, $options = array())
     {
