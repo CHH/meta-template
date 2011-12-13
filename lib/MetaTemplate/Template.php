@@ -36,12 +36,9 @@ class Template
      * @param  array  $options  Engine Options to pass to the constructor
      * @return \Pipe\Template\Base
      */
-    static function create($template, array $options = array())
+    static function create($template, $options = array())
     {
-        $class    = static::get($template);
-        $template = new $class($template, $options);
-
-        return $template;
+        return static::getEngines()->create($template, $options);
     }
 
     /**

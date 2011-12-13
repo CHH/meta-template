@@ -37,6 +37,14 @@ class EngineRegistry
         return $this;
     }
 
+    function create($path, $options = array())
+    {
+        $extension = pathinfo($path, PATHINFO_EXTENSION);
+        $class = $this->get($extension);
+
+        return new $class($path, $options = array());
+    }
+
     function get($extension)
     {
         $extension = Template::normalizeExtension($extension);
