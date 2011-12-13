@@ -28,7 +28,7 @@ class PHPTemplate extends Base
         $templateClass = "\\MetaTemplate\\Template\\PrecompiledPHPTemplate\\Template_$id";
 
         if (class_exists($templateClass)) {
-            return;
+            return new $templateClass;
         }
 
         $source = $this->getPrecompiled($locals);
