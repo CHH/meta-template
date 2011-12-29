@@ -11,6 +11,10 @@ $pkg['require'] = array(
     'symfony/process' => '>=2.0.0,<2.1.0dev'
 );
 
+$pkg['recommend'] = array(
+    'symfony/class-loader' => '>=2.0.0,<2.1.0dev',
+);
+
 $pkg['autoload'] = array(
     'psr-0' => array(
         'MetaTemplate' => 'lib/'

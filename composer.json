@@ -4,6 +4,9 @@
         "php": ">=5.3.2",
         "symfony/process": ">=2.0.0,<2.1.0dev"
     },
+    "recommend": {
+        "symfony/class-loader": ">=2.0.0,<2.1.0dev"
+    },
     "autoload": {
         "psr-0": {
             "MetaTemplate": "lib/"
