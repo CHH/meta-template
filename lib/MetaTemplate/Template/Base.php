@@ -66,4 +66,5 @@ abstract class Base implements TemplateInterface
         } else {
             return '';
         }
+    }
 }
