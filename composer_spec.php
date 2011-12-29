@@ -11,6 +11,12 @@ $pkg['require'] = array(
     'symfony/process' => '>=2.0.0,<2.1.0dev'
 );
 
+$pkg['autoload'] = array(
+    'psr-0' => array(
+        'MetaTemplate' => 'lib/'
+    )
+);
+
 $pkg['description'] = "Templating solution with adapters to many engines";
 $pkg['keywords']    = array('templating');
 $pkg['license']     = "MIT";
