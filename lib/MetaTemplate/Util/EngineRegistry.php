@@ -8,6 +8,11 @@ class EngineRegistry
 {
     protected $engines = array();
 
+    function getEngines()
+    {
+        return $this->engines;
+    }
+
     /**
      * Registers an engine with one or more extensions
      *

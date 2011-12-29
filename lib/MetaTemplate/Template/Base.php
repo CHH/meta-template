@@ -58,4 +58,12 @@ abstract class Base implements TemplateInterface
     {
         return null !== $this->source and file_exists($this->source);
     }
+
+    function getDirname()
+    {
+        if ($this->source) {
+            return dirname($this->source);
+        } else {
+            return '';
+        }
 }
