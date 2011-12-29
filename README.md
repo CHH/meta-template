@@ -93,10 +93,3 @@ Your template's content is loaded into the `$data` property.
 
 Look at the supplied templating engines, if you need some examples.
 
-## Utilities
-
-### EngineRegistry
-
-### LoadPath
-
-## API

@@ -9,5 +9,11 @@
         "templating"
     ],
     "license": "MIT",
-    "homepage": "https://github.com/CHH/MetaTemplate"
+    "homepage": "https://github.com/CHH/MetaTemplate",
+    "authors": [
+        {
+            "name": "Christoph Hochstrasser",
+            "email": "christoph.hochstrasser@gmail.com"
+        }
+    ]
 }
