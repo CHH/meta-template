@@ -42,12 +42,12 @@ class EngineRegistry
         return $this;
     }
 
-    function create($path, $options = array())
+    function create($source, $options = null, $callback = null)
     {
-        $extension = pathinfo($path, PATHINFO_EXTENSION);
+        $extension = pathinfo($source, PATHINFO_EXTENSION);
         $class = $this->get($extension);
 
-        return new $class($path, $options = array());
+        return new $class($source, $options, $callback);
     }
 
     function get($extension)

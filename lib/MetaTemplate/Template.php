@@ -32,13 +32,13 @@ class Template
     /**
      * Creates a engine instance for the given template path
      *
-     * @param  string $template
+     * @param  string $source
      * @param  array  $options  Engine Options to pass to the constructor
      * @return \MetaTemplate\Template\Base
      */
-    static function create($template, $options = array())
+    static function create($source, $options = array(), $callback = null)
     {
-        return static::getEngines()->create($template, $options);
+        return static::getEngines()->create($source, $options, $callback);
     }
 
     /**
