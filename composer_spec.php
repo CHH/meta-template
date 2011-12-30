@@ -6,6 +6,11 @@ $pkg = array();
 // in `bob_config.php`.
 $pkg['name'] = $NAME;
 
+$pkg['description'] = "Templating solution with adapters to many engines";
+$pkg['keywords']    = array('templating');
+$pkg['license']     = "MIT";
+$pkg['homepage']    = "https://github.com/CHH/MetaTemplate";
+
 $pkg['require'] = array(
     'php' => '>=5.3.2',
     'symfony/process' => '>=2.0.0,<2.1.0dev'
@@ -20,11 +25,6 @@ $pkg['autoload'] = array(
         'MetaTemplate' => 'lib/'
     )
 );
-
-$pkg['description'] = "Templating solution with adapters to many engines";
-$pkg['keywords']    = array('templating');
-$pkg['license']     = "MIT";
-$pkg['homepage']    = "https://github.com/CHH/MetaTemplate";
 
 // These get computed in the `bob_config.php`
 if ($VERSION)     $pkg['version'] = $VERSION;
