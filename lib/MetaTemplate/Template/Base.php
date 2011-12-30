@@ -24,20 +24,34 @@ abstract class Base implements TemplateInterface
     /**
      * Constructor
      *
+     * All arguments are optional and can be passed in any order.
+     *
+     * @param strinng $source The source file name.
      * @param string $reader Callback which returns the template's 
      *   contents or the template's file name
      * @param array  $options  Engine Options
      */
-    function __construct($reader, $options = array())
+    function __construct($source = null, $options = null, $reader = null)
     {
-        $this->options = $options;
+        foreach (array_filter(array($source, $reader, $options)) as $arg) {
+            switch (true) {
+                case is_callable($arg):
+                    $reader = $arg;
+                    break;
+                case is_string($arg):
+                    $this->source = $arg;
+                    break;
+                case is_array($arg):
+                    $this->options = $arg;
+                    break;
+            }
+        }
 
         if (is_callable($reader)) {
             $this->data = call_user_func($reader, $this);
 
-        } else if (file_exists($reader) and is_readable($reader)) {
-            $this->source = $reader;
-            $this->data = @file_get_contents($reader);
+        } else if (file_exists($this->source) and is_readable($this->source)) {
+            $this->data = @file_get_contents($this->source);
         }
 
         $this->prepare();

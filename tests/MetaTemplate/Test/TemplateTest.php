@@ -4,6 +4,13 @@ namespace MetaTemplate\Test;
 
 use MetaTemplate\Template;
 
+class DummyTemplate extends \MetaTemplate\Template\Base
+{
+    function render($context = null, $vars = array())
+    {
+    }
+}
+
 class TemplateTest extends \PHPUnit_Framework_TestCase
 {
     function testRegistersExtensionWithTemplate()
@@ -20,4 +27,18 @@ class TemplateTest extends \PHPUnit_Framework_TestCase
 	{
 		$this->assertNull(Template::get('foo.erb'));
 	}
+
+    function testAcceptsArgumentsInAnyOrder()
+    {
+        $templ = new DummyTemplate(__DIR__.'/fixtures/template.phtml', function() {
+            return "Hello World";
+        });
+
+        $this->assertEquals("Hello World", $templ->getData());
+
+        $templ = new DummyTemplate(array('foo' => 'bar'));
+
+        $this->assertNull($templ->source);
+        $this->assertNull($templ->getData());
+    }
 }
