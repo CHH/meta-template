@@ -8,7 +8,7 @@ class MustacheTemplateTest extends \PHPUnit_Framework_TestCase
 {
     function setUp()
     {
-        if (!isset($_ENV['MUSTACHE_LIB'])) {
+        if (!class_exists('\\Phly\\Mustache\\Mustache')) {
             $this->markTestSkipped('Set MUSTACHE_LIB in the phpunit config file to run this test');
         }
     }

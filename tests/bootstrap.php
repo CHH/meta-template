@@ -15,8 +15,4 @@ if (isset($_ENV['MARKDOWN_LIB'])) {
     require $_ENV['MARKDOWN_LIB'].'/markdown.php';
 }
 
-if (isset($_ENV['MUSTACHE_LIB'])) {
-    require $_ENV['MUSTACHE_LIB'].'/library/Phly/Mustache/_autoload.php';
-}
-
 $classLoader->register();

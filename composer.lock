@@ -1,1 +1,14 @@
-[{"package":"symfony\/class-loader","version":"2.0.7"},{"package":"symfony\/process","version":"2.0.7"}]
+[
+    {
+        "package": "symfony\/class-loader",
+        "version": "2.0.7"
+    },
+    {
+        "package": "symfony\/process",
+        "version": "2.0.7"
+    },
+    {
+        "package": "phly\/mustache",
+        "version": "master-dev"
+    }
+]

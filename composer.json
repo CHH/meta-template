@@ -1,6 +1,6 @@
 {
     "name": "chh/meta-template",
-    "description": "Templating solution with adapters to many engines",
+    "description": "Templating solution with adapters to many engines.",
     "keywords": [
         "templating"
     ],
@@ -12,6 +12,9 @@
     },
     "recommend": {
         "symfony/class-loader": ">=2.0.0,<2.1.0dev"
+    },
+    "suggest": {
+        "phly/mustache": "*"
     },
     "autoload": {
         "psr-0": {
