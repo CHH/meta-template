@@ -52,6 +52,8 @@ abstract class Base implements TemplateInterface
 
         } else if (file_exists($this->source) and is_readable($this->source)) {
             $this->data = @file_get_contents($this->source);
+        } else {
+            throw new \UnexpectedValueException("{$this->source} is not a file or not readable.");
         }
 
         $this->prepare();
