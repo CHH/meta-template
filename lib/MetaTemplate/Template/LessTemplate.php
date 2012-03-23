@@ -6,6 +6,8 @@ use Symfony\Component\Process\Process;
 
 class LessTemplate extends Base
 {
+    const DEFAULT_LESSC = "/usr/bin/env lessc";
+
     static function getDefaultContentType()
     {
         return "text/css";
@@ -15,11 +17,8 @@ class LessTemplate extends Base
     {
         $options = $this->options;
 
-        $lessBin = isset($options['less_bin']) 
-            ? $options['less_bin'] : '/usr/local/bin/lessc';
-
-        $compress = isset($options['compress']) 
-            ? $options['compress'] : false;
+        $lessBin  = @$options["less_bin"] ?: self::DEFAULT_LESSC;
+        $compress = @$options["compress"] ?: false;
 
         if ($this->isFile()) {
             $inputFile = $this->source;
@@ -30,11 +29,13 @@ class LessTemplate extends Base
 
         $outputFile = tempnam(sys_get_temp_dir(), 'metatemplate_template_less_output');
 
-        $cmd = $lessBin.' '.$inputFile.' '.$outputFile;
+        $cmd = $lessBin;
 
         if ($compress) {
             $cmd .= ' -x';
         }
+
+        $cmd .= " $inputFile $outputFile";
 
         $process = new Process($cmd);
 
