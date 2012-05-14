@@ -10,6 +10,11 @@ class CoffeeScriptTemplate extends Base
 
     static $bin = self::DEFAULT_COFFEE;
 
+    static function getDefaultContentType()
+    {
+        return "application/javascript";
+    }
+
     function render($context = null, $vars = array())
     {
         $cmd = static::$bin;
