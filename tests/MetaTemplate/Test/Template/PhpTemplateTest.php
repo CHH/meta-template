@@ -19,10 +19,25 @@ class PHPTemplateTest extends \PHPUnit_Framework_TestCase
         $templ = new PHPTemplate(function() {
             return 'You won <?= $this->amount; ?> $.';
         });
-        
+
         $context = (object) array(
             'amount' => 40000
         );
+        $output = $templ->render($context);
+
+        $this->assertEquals("You won 40000 $.", $output);
+    }
+
+    function testRendersWithShortTagsWithoutSemicolons()
+    {
+        $templ = new PHPTemplate(function() {
+            return 'You won <?= $this->amount ?> $.';
+        });
+
+        $context = (object) array(
+            'amount' => 40000
+        );
+
         $output = $templ->render($context);
 
         $this->assertEquals("You won 40000 $.", $output);

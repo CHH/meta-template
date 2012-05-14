@@ -36,6 +36,11 @@ class PHPTemplate extends Base
 
         eval(sprintf($classTemplate, $id, $source));
 
+        if (!class_exists($templateClass)) {
+            # Something went wrong.
+            throw new \UnexpectedValueException("Something went wrong.");
+        }
+
         return new $templateClass;
     }
 
@@ -67,6 +72,7 @@ class PHPTemplate extends Base
 
                 case T_OPEN_TAG:
                 case T_CLOSE_TAG:
+                    $compiled .= ';';
                     break;
 
                 case T_INLINE_HTML:
