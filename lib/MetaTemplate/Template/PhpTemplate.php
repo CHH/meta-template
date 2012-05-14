@@ -76,7 +76,6 @@ class PHPTemplate extends Base
                     break;
 
                 case T_INLINE_HTML:
-                    $content = addslashes($content);
                     $compiled .= sprintf('echo %s;', var_export($content, true));
                     break;
 
