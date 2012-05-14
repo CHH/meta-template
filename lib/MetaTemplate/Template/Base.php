@@ -49,7 +49,6 @@ abstract class Base implements TemplateInterface
 
         if (is_callable($reader)) {
             $this->data = call_user_func($reader, $this);
-
         } else if (file_exists($this->source) and is_readable($this->source)) {
             $this->data = @file_get_contents($this->source);
         } else {

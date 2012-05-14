@@ -8,16 +8,15 @@ class LessTemplateTest extends \PHPUnit_Framework_TestCase
 {
     function test()
     {
-        $fixture = __DIR__ . "/fixtures/less/screen.less";
-
         if (empty($_ENV['LESS_BIN'])) {
-            $this->markTestSkipped(
+            return $this->markTestSkipped(
                 'Set $_ENV[\'LESS_BIN\'] if you want to test LessTemplate'
             );
         }
 
         LessTemplate::$bin = $_ENV["LESS_BIN"];
 
+        $fixture = __DIR__ . "/fixtures/less/screen.less";
         $template = new LessTemplate($fixture);
 
         $assert = <<<CSS
