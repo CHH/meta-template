@@ -23,7 +23,7 @@ class CoffeeScriptTemplate extends Base
         $process = new Process($cmd);
 
         $process->setEnv(array(
-            'PATH' => $_SERVER['PATH']
+            'PATH' => @$_SERVER['PATH'] ?: join(PATH_SEPARATOR, array("/bin", "/sbin", "/usr/bin", "/usr/local/bin"))
         ));
 
         $process->setStdin($this->data);
