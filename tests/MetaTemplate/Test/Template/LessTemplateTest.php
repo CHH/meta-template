@@ -16,9 +16,9 @@ class LessTemplateTest extends \PHPUnit_Framework_TestCase
             );
         }
 
-        $template = new LessTemplate($fixture, array(
-            'less_bin' => $_ENV['LESS_BIN']
-        ));
+        LessTemplate::$bin = $_ENV["LESS_BIN"];
+
+        $template = new LessTemplate($fixture);
 
         $assert = <<<CSS
 #nav-main {
