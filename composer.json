@@ -8,7 +8,7 @@
     "homepage": "https://github.com/CHH/meta-template",
     "require": {
         "php": ">=5.3.2",
-        "symfony/process": ">=2.0.0,<2.1.0dev"
+        "symfony/process": "2.*@stable"
     },
     "suggest": {
         "phly/mustache": "*"

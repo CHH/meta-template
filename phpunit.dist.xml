@@ -3,6 +3,7 @@
         <!--
         <env name="MARKDOWN_LIB" value="" />
         <env name="LESS_BIN" value="/usr/local/bin/lessc" />
+        <env name="COFFEE_BIN" value="/usr/local/bin/coffee" />
         -->
     </php>
     <testsuites>
