@@ -2,16 +2,19 @@
 
 namespace MetaTemplate\Template;
 
+use dflydev\markdown\MarkdownParser;
+
 class MarkdownTemplate extends Base
 {
+    var $markdown;
+
+    protected function prepare()
+    {
+        $this->markdown = new MarkdownParser;
+    }
+
     function render($context = null, $vars = array())
     {
-        if (!function_exists('Markdown')) {
-            throw new \RuntimeException(
-                'MetaTemplate\Template\MarkdownTemplate requires php-markdown to be'
-                . ' installed.'
-            );
-        }
-        return Markdown($this->data);
+        return $this->markdown->transformMarkdown($this->data);
     }
 }

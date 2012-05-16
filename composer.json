@@ -8,10 +8,9 @@
     "homepage": "https://github.com/CHH/meta-template",
     "require": {
         "php": ">=5.3.2",
-        "symfony/process": "2.*@stable"
-    },
-    "suggest": {
-        "phly/mustache": "*"
+        "symfony/process": "2.*@stable",
+        "phly/mustache": "*",
+        "dflydev/markdown": "*"
     },
     "autoload": {
         "psr-0": {
