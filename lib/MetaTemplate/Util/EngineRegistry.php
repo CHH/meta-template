@@ -7,10 +7,16 @@ use MetaTemplate\Template;
 class EngineRegistry
 {
     protected $engines = array();
+    protected $defaultOptions = array();
 
     function getEngines()
     {
         return $this->engines;
+    }
+
+    function setDefaultOptions($engine, $options = array())
+    {
+        $this->defaultOptions[$engine] = $options;
     }
 
     /**
@@ -46,6 +52,7 @@ class EngineRegistry
     {
         $extension = pathinfo($source, PATHINFO_EXTENSION);
         $class = $this->get($extension);
+        $options = array_merge(@$this->defaultOptions[$class] ?: array(), $options);
 
         return new $class($source, $options, $callback);
     }

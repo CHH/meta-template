@@ -17,6 +17,11 @@ class Template
         return static::$engines;
     }
 
+    static function setDefaultOptions($engine, $options = array())
+    {
+        static::getEngines()->setDefaultOptions($engine, $options);
+    }
+
     /**
      * Returns the engine class for the given path
      *

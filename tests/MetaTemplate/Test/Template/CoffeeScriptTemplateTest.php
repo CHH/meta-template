@@ -15,9 +15,11 @@ class CoffeeScriptTemplateTest extends \PHPUnit_Framework_TestCase
 
     function test()
     {
-        $template = new CoffeeScriptTemplate(__DIR__ . "/fixtures/coffee/test.coffee");
-        $output = $template->render();
+        $template = new CoffeeScriptTemplate(__DIR__ . "/fixtures/coffee/test.coffee", array(
+            "bin" => $_ENV["COFFEE_BIN"]
+        ));
 
+        $output = $template->render();
         $this->assertFalse(empty($output));
     }
 }

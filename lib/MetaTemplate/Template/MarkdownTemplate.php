@@ -6,7 +6,12 @@ use dflydev\markdown\MarkdownParser;
 
 class MarkdownTemplate extends Base
 {
-    var $markdown;
+    protected $markdown;
+
+    static function getDefaultContentType()
+    {
+        return "text/html";
+    }
 
     protected function prepare()
     {

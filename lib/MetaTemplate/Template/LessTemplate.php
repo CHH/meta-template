@@ -8,9 +8,6 @@ class LessTemplate extends Base
 {
     const DEFAULT_LESSC = "/usr/bin/env lessc";
 
-    # The location of the "lessc" executable.
-    static $bin = self::DEFAULT_LESSC;
-
     static function getDefaultContentType()
     {
         return "text/css";
@@ -30,7 +27,7 @@ class LessTemplate extends Base
 
         $outputFile = tempnam(sys_get_temp_dir(), 'metatemplate_template_less_output');
 
-        $cmd = static::$bin;
+        $cmd = @$this->options["bin"] ?: self::DEFAULT_LESSC;
 
         if ($compress) {
             $cmd .= ' -x';

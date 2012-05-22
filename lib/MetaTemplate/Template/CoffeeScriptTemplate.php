@@ -8,8 +8,6 @@ class CoffeeScriptTemplate extends Base
 {
     const DEFAULT_COFFEE = "/usr/bin/env coffee";
 
-    static $bin = self::DEFAULT_COFFEE;
-
     static function getDefaultContentType()
     {
         return "application/javascript";
@@ -17,7 +15,7 @@ class CoffeeScriptTemplate extends Base
 
     function render($context = null, $vars = array())
     {
-        $cmd = static::$bin;
+        $cmd = @$this->options["bin"] ?: self::DEFAULT_COFFEE;
         $cmd .= " -sc";
 
         $process = new Process($cmd);

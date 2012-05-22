@@ -6,6 +6,11 @@ class PHPTemplate extends Base
 {
     protected $templates = array();
 
+    static function getDefaultContentType()
+    {
+        return "text/html";
+    }
+
     function render($context = null, $vars = array())
     {
         $template = $this->getTemplateClass($vars);
