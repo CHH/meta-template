@@ -33,7 +33,7 @@ abstract class Base implements TemplateInterface
      */
     function __construct($source = null, $options = null, $reader = null)
     {
-        foreach (array_filter(array($source, $reader, $options)) as $arg) {
+        foreach (array_filter(array($source, $options, $reader)) as $arg) {
             switch (true) {
                 case is_callable($arg):
                     $reader = $arg;
@@ -47,12 +47,12 @@ abstract class Base implements TemplateInterface
             }
         }
 
-        if (is_callable($reader)) {
+        if (isset($reader)) {
             $this->data = call_user_func($reader, $this);
-        } else if (file_exists($this->source) and is_readable($this->source)) {
+        } else if (is_file($this->source)) {
             $this->data = @file_get_contents($this->source);
         } else {
-            throw new \UnexpectedValueException("{$this->source} is not a file or not readable.");
+            throw new \InvalidArgumentException("There must be either a valid callable or a valid file name given.");
         }
 
         $this->prepare();
