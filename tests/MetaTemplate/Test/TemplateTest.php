@@ -19,14 +19,14 @@ class TemplateTest extends \PHPUnit_Framework_TestCase
 
         $templ = Template::create(__DIR__ . "/fixtures/template.phtml");
 
-		$this->assertInternalType('object', $templ);
+        $this->assertInternalType('object', $templ);
         $this->assertInstanceOf('\\MetaTemplate\\Template\\PhpTemplate', $templ);
     }
 
-	function testReturnsNullIfExtensionHasNoEngine()
-	{
-		$this->assertNull(Template::get('foo.erb'));
-	}
+    function testReturnsNullIfExtensionHasNoEngine()
+    {
+        $this->assertNull(Template::get('foo.erb'));
+    }
 
     function testAcceptsArgumentsInAnyOrder()
     {
