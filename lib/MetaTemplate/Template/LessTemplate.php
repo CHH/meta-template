@@ -2,11 +2,12 @@
 
 namespace MetaTemplate\Template;
 
-use Symfony\Component\Process\Process;
+use Symfony\Component\Process\Process,
+    Symfony\Component\Process\ExecutableFinder;
 
 class LessTemplate extends Base
 {
-    const DEFAULT_LESSC = "/usr/bin/env lessc";
+    const DEFAULT_LESSC = "lessc";
 
     static function getDefaultContentType()
     {
@@ -27,7 +28,16 @@ class LessTemplate extends Base
 
         $outputFile = tempnam(sys_get_temp_dir(), 'metatemplate_template_less_output');
 
-        $cmd = @$this->options["bin"] ?: self::DEFAULT_LESSC;
+        $finder = new ExecutableFinder;
+        $bin = @$this->options["less_bin"] ?: self::DEFAULT_LESSC;
+
+        $cmd = $finder->find($bin);
+
+        if ($cmd === null) {
+            throw new \UnexpectedValueException(
+                "'$bin' executable was not found. Make sure it's installed."
+            );
+        }
 
         if ($compress) {
             $cmd .= ' -x';

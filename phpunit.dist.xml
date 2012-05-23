@@ -1,8 +1,8 @@
 <phpunit bootstrap="./tests/bootstrap.php">
     <php>
         <!--
-        <env name="LESS_BIN" value="/usr/local/bin/lessc" />
-        <env name="COFFEE_BIN" value="/usr/local/bin/coffee" />
+        <env name="LESS_PATH" value="/usr/local/bin" />
+        <env name="COFFEE_PATH" value="/usr/local/bin" />
         -->
     </php>
     <testsuites>

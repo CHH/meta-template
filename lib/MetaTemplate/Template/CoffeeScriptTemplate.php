@@ -2,11 +2,12 @@
 
 namespace MetaTemplate\Template;
 
-use Symfony\Component\Process\Process;
+use Symfony\Component\Process\Process,
+    Symfony\Component\Process\ExecutableFinder;
 
 class CoffeeScriptTemplate extends Base
 {
-    const DEFAULT_COFFEE = "/usr/bin/env coffee";
+    const DEFAULT_COFFEE = "coffee";
 
     static function getDefaultContentType()
     {
@@ -15,7 +16,17 @@ class CoffeeScriptTemplate extends Base
 
     function render($context = null, $vars = array())
     {
-        $cmd = @$this->options["bin"] ?: self::DEFAULT_COFFEE;
+        $finder = new ExecutableFinder;
+        $bin = @$this->options["coffee_bin"] ?: self::DEFAULT_COFFEE;
+
+        $cmd = $finder->find($bin);
+
+        if ($cmd === null) {
+            throw new \UnexpectedValueException(
+                "'$bin' executable was not found. Make sure it's installed."
+            );
+        }
+
         $cmd .= " -sc";
 
         $process = new Process($cmd);

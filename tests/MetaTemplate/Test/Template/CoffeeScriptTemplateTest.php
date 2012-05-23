@@ -8,16 +8,16 @@ class CoffeeScriptTemplateTest extends \PHPUnit_Framework_TestCase
 {
     function setUp()
     {
-        if (!isset($_ENV["COFFEE_BIN"])) {
-            return $this->markTestSkipped("Set \$_ENV['COFFEE_BIN'] to test Coffeescript support.");
+        if (!isset($_ENV["COFFEE_PATH"])) {
+            return $this->markTestSkipped("Set \$_ENV['COFFEE_PATH'] to test CoffeeScript support.");
         }
+
+        putenv("PATH=" . join(PATH_SEPARATOR, array(getenv("PATH"), dirname($_ENV["COFFEE_PATH"]))));
     }
 
     function test()
     {
-        $template = new CoffeeScriptTemplate(__DIR__ . "/fixtures/coffee/test.coffee", array(
-            "bin" => $_ENV["COFFEE_BIN"]
-        ));
+        $template = new CoffeeScriptTemplate(__DIR__ . "/fixtures/coffee/test.coffee");
 
         $output = $template->render();
         $this->assertFalse(empty($output));
