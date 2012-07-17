@@ -74,6 +74,7 @@ class Template
         static::register('\\MetaTemplate\\Template\\LessTemplate', 'less');
         static::register('\\MetaTemplate\\Template\\MarkdownTemplate', array('markdown', 'md'));
         static::register('\\MetaTemplate\\Template\\CoffeeScriptTemplate', 'coffee');
+        static::register('\\MetaTemplate\\Template\\TwigTemplate', 'twig');
     }
 }
 

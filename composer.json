@@ -17,7 +17,8 @@
         "php": ">=5.3.2",
         "symfony/process": "2.*@stable",
         "phly/mustache": "*@stable",
-        "dflydev/markdown": "*@dev"
+        "dflydev/markdown": "*@dev",
+        "twig/twig": "*@stable"
     },
     "autoload": {
         "psr-0": {
