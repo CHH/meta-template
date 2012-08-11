@@ -19,12 +19,8 @@ class LessTemplate extends Base
         $options  = $this->options;
         $compress = @$options["compress"] ?: false;
 
-        if ($this->isFile()) {
-            $inputFile = $this->source;
-        } else {
-            $inputFile = tempnam(sys_get_temp_dir(), 'metatemplate_template_less_input');
-            file_put_contents($inputFile, $this->data);
-        }
+        $inputFile = tempnam(sys_get_temp_dir(), 'metatemplate_template_less_input');
+        file_put_contents($inputFile, $this->data);
 
         $outputFile = tempnam(sys_get_temp_dir(), 'metatemplate_template_less_output');
 
@@ -46,6 +42,10 @@ class LessTemplate extends Base
         $cmd .= " $inputFile $outputFile";
 
         $process = new Process($cmd);
+
+        if ($this->isFile()) {
+            $process->setWorkingDirectory(dirname($this->source));
+        }
 
         $process->setEnv(array(
             'PATH' => $_SERVER['PATH']
