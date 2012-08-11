@@ -70,7 +70,7 @@ class Template
 
     static function setupDefaultEngines()
     {
-        static::register('\\MetaTemplate\\Template\\PHPTemplate', array('php', 'phtml'));
+        static::register('\\MetaTemplate\\Template\\PhpTemplate', array('php', 'phtml'));
         static::register('\\MetaTemplate\\Template\\LessTemplate', 'less');
         static::register('\\MetaTemplate\\Template\\MarkdownTemplate', array('markdown', 'md'));
         static::register('\\MetaTemplate\\Template\\CoffeeScriptTemplate', 'coffee');

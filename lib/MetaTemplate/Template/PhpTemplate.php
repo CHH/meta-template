@@ -2,7 +2,7 @@
 
 namespace MetaTemplate\Template;
 
-class PHPTemplate extends Base
+class PhpTemplate extends Base
 {
     protected $templates = array();
 
