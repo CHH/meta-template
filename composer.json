@@ -18,7 +18,8 @@
         "symfony/process": "2.*@stable",
         "phly/mustache": "*@stable",
         "dflydev/markdown": "*@dev",
-        "twig/twig": "*@stable"
+        "twig/twig": "*@stable",
+        "chh/fileutils": "*@dev"
     },
     "autoload": {
         "psr-0": {

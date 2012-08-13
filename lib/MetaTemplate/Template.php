@@ -3,6 +3,7 @@
 namespace MetaTemplate;
 
 use MetaTemplate\Util\EngineRegistry;
+use CHH\FileUtils;
 
 class Template
 {
@@ -60,21 +61,22 @@ class Template
 
     static function normalizeExtension($extension)
     {
-        $extension = strtolower($extension);
-
-        if ('.' == $extension[0]) {
-            $extension = substr($extension, 1);
-        }
-        return $extension;
+        return FileUtils::normalizeExtension($extension);
     }
 
     static function setupDefaultEngines()
     {
-        static::register('\\MetaTemplate\\Template\\PhpTemplate', array('php', 'phtml'));
-        static::register('\\MetaTemplate\\Template\\LessTemplate', 'less');
-        static::register('\\MetaTemplate\\Template\\MarkdownTemplate', array('markdown', 'md'));
-        static::register('\\MetaTemplate\\Template\\CoffeeScriptTemplate', 'coffee');
-        static::register('\\MetaTemplate\\Template\\TwigTemplate', 'twig');
+        $defaultEngines = array(
+            'PhpTemplate'          => array('php', 'phtml'),
+            'LessTemplate'         => array('less'),
+            'MarkdownTemplate'     => array('md', 'markdown'),
+            'CoffeeScriptTemplate' => array('coffee'),
+            'TwigTemplate'         => array('twig')
+        );
+
+        foreach ($defaultEngines as $engine => $extensions) {
+            static::register("\\MetaTemplate\\Template\\$engine", $extensions);
+        }
     }
 }
 
