@@ -40,7 +40,7 @@ class CoffeeScriptTemplate extends Base
 
         if (!$process->isSuccessful()) {
             throw new \RuntimeException(
-                "coffee returned an error: {$process->getErrorOutput()}"
+                "coffee({$this->source}) returned an error:\n {$process->getErrorOutput()}"
             );
         }
 
