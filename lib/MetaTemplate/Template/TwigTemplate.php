@@ -21,6 +21,9 @@ class TwigTemplate extends Base
 
     function render($context = null, $vars = array())
     {
-        return $this->environment->render($this->getData(), array_merge($vars, array("context" => $context)));
+        return $this->environment->render(
+            $this->getData(),
+            array_merge($vars, array("context" => $context))
+        );
     }
 }
