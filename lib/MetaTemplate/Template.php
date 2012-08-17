@@ -3,7 +3,7 @@
 namespace MetaTemplate;
 
 use MetaTemplate\Util\EngineRegistry;
-use CHH\FileUtils;
+use CHH\FileUtils\Path;
 
 class Template
 {
@@ -61,7 +61,7 @@ class Template
 
     static function normalizeExtension($extension)
     {
-        return FileUtils::normalizeExtension($extension);
+        return Path::normalizeExtension($extension);
     }
 
     static function setupDefaultEngines()
