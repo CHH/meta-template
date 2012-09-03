@@ -17,10 +17,17 @@
     "require": {
         "php": ">=5.3.2",
         "symfony/process": "2.*@stable",
+        "chh/fileutils": "*@dev"
+    },
+    "require-dev": {
         "phly/mustache": "*@stable",
         "dflydev/markdown": "*@dev",
-        "twig/twig": "*@stable",
-        "chh/fileutils": "*@dev"
+        "twig/twig": "*@stable"
+    },
+    "suggest": {
+        "phly/mustache": "Enable .mustache support",
+        "dflydev/markdown": "Enable .md, .markdown support",
+        "twig/twig": "Enable .twig support"
     },
     "autoload": {
         "psr-0": {
