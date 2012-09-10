@@ -48,7 +48,7 @@ class LessTemplate extends Base
         }
 
         $process->setEnv(array(
-            'PATH' => $_SERVER['PATH']
+            'PATH' => getenv("PATH")
         ));
 
         $process->run();
