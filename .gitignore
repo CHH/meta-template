@@ -3,3 +3,4 @@ vendor/
 tags
 phpunit.xml
 composer.lock
+composer.phar
