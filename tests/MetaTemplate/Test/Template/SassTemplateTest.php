@@ -8,10 +8,6 @@ class SassTemplateTest extends \PHPUnit_Framework_TestCase
 {
     function testSassFile()
     {
-        $ctx = (object) array(
-            "foo" => "bar"
-        );
-
         $templ = new SassTemplate(__DIR__ . "/fixtures/sass/test.sass");
 
         $this->assertEquals(<<<EXPECTED
@@ -26,16 +22,12 @@ class SassTemplateTest extends \PHPUnit_Framework_TestCase
 
 
 EXPECTED
-            , $templ->render($ctx)
+            , $templ->render()
         );
     }
 
     function testScssFile()
     {
-        $ctx = (object) array(
-            "foo" => "bar"
-        );
-
         $templ = new SassTemplate(__DIR__ . "/fixtures/sass/test.scss");
 
         $this->assertEquals(<<<EXPECTED
@@ -44,14 +36,15 @@ EXPECTED
   color: #2ca2af; }
 
 .border {
-  padding: 8px;
-  margin: 8px;
+  padding: 16px;
+  margin: 16px;
   border-color: #3bbfce; }
 
 
 EXPECTED
-            , $templ->render($ctx)
+            , $templ->render()
         );
+
     }
 
 }
