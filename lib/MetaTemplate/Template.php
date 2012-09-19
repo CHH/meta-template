@@ -70,7 +70,7 @@ class Template
             'PhpTemplate'          => array('php', 'phtml'),
             'LessTemplate'         => array('less'),
             'MarkdownTemplate'     => array('md', 'markdown'),
-            'MarkdownTemplate'     => array('scss', 'sass'),
+            'SassTemplate'         => array('scss', 'sass'),
             'CoffeeScriptTemplate' => array('coffee'),
             'TwigTemplate'         => array('twig')
         );
