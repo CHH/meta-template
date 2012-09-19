@@ -1,4 +1,4 @@
-<phpunit bootstrap="./tests/bootstrap.php">
+<phpunit bootstrap="./tests/bootstrap.php" convertNoticesToExceptions="false">
     <php>
         <!--
         <env name="LESS_PATH" value="/usr/local/bin" />

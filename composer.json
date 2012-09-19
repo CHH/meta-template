@@ -22,12 +22,14 @@
     "require-dev": {
         "phly/mustache": "*@stable",
         "dflydev/markdown": "*@dev",
-        "twig/twig": "*@stable"
+        "twig/twig": "*@stable",
+        "richthegeek/phpsass": "*@dev"
     },
     "suggest": {
         "phly/mustache": "Enable .mustache support",
         "dflydev/markdown": "Enable .md, .markdown support",
-        "twig/twig": "Enable .twig support"
+        "twig/twig": "Enable .twig support",
+        "richthegeek/phpsass": "Enable .sass, .scss support"
     },
     "autoload": {
         "psr-0": {

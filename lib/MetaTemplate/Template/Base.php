@@ -58,6 +58,11 @@ abstract class Base implements TemplateInterface
         $this->prepare();
     }
 
+    function getExtension()
+    {
+        return pathinfo($this->source, PATHINFO_EXTENSION);
+    }
+
     /**
      * Called after the constructor
      */

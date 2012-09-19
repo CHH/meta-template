@@ -21,6 +21,7 @@ instance.
 MetaTemplate ships with these adapters/engines by default:
 
  * `PHPTemplate`, mapped to `.php` and `.phtml`
+ * `PhpSass`, mapped to `.sass` and `.scss`
  * `MarkdownTemplate` (requires
    [php-markdown](http://github.com/michelf/php-markdown) to be loaded), mapped to
    `.md` and `.markdown`
