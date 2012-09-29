@@ -57,6 +57,11 @@ class EngineRegistry
         return new $class($source, $options, $callback);
     }
 
+    function getEngineExtensions()
+    {
+        return array_keys($this->engines);
+    }
+
     function get($extension)
     {
         $extension = Template::normalizeExtension($extension);
