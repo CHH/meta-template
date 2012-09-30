@@ -23,13 +23,15 @@
         "phly/mustache": "*@stable",
         "dflydev/markdown": "*@dev",
         "twig/twig": "*@stable",
-        "richthegeek/phpsass": "*@dev"
+        "richthegeek/phpsass": "*@dev",
+        "jsonbuilder/jsonbuilder": "*@dev"
     },
     "suggest": {
         "phly/mustache": "Enable .mustache support",
         "dflydev/markdown": "Enable .md, .markdown support",
         "twig/twig": "Enable .twig support",
-        "richthegeek/phpsass": "Enable .sass, .scss support"
+        "richthegeek/phpsass": "Enable .sass, .scss support",
+        "jsonbuilder/jsonbuilder": "Enable .jsonbuilder support"
     },
     "autoload": {
         "psr-0": {

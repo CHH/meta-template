@@ -1,0 +1,3 @@
+<?php
+
+$json->foo = $this->foo;

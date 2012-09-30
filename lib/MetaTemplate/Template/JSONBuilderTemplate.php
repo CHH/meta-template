@@ -2,9 +2,9 @@
 
 namespace MetaTemplate\Template;
 
-use JBuilder;
+use jsonbuilder\Object;
 
-class JBuilderTemplate extends PhpTemplate
+class JSONBuilderTemplate extends PhpTemplate
 {
     static function getDefaultContentType()
     {
@@ -13,7 +13,7 @@ class JBuilderTemplate extends PhpTemplate
 
     function render($context = null, $vars = array())
     {
-        $json = new JBuilder;
+        $json = new Object;
 
         $vars['json'] = $json;
         parent::render($context, $vars);
