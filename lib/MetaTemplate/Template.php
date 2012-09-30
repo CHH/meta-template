@@ -72,7 +72,8 @@ class Template
             'MarkdownTemplate'     => array('md', 'markdown'),
             'SassTemplate'         => array('scss', 'sass'),
             'CoffeeScriptTemplate' => array('coffee'),
-            'TwigTemplate'         => array('twig')
+            'TwigTemplate'         => array('twig'),
+            'JBuilderTemplate'     => array('jbuilder')
         );
 
         foreach ($defaultEngines as $engine => $extensions) {
