@@ -3,6 +3,7 @@
         <!--
         <env name="LESS_PATH" value="/usr/local/bin" />
         <env name="COFFEE_PATH" value="/usr/local/bin" />
+        <env name="TSC_PATH" value="/usr/local/bin" />
         -->
     </php>
     <testsuites>
