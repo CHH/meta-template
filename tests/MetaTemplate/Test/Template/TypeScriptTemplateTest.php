@@ -20,7 +20,6 @@ class TypeScriptTemplateTest extends \PHPUnit_Framework_TestCase
         $template = new TypeScriptTemplate(__DIR__ . "/fixtures/typescript/hello.ts");
 
         $output = $template->render();
-        var_dump($output);
         $this->assertFalse(empty($output));
     }
 }

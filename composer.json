@@ -16,15 +16,17 @@
     "minimum-stability": "dev",
     "require": {
         "php": ">=5.3.2",
-        "symfony/process": "2.*@stable",
-        "chh/fileutils": "*@dev"
+        "symfony/process": "~2.1",
+        "chh/fileutils": "1.0.*@dev"
     },
     "require-dev": {
-        "phly/mustache": "*@stable",
-        "dflydev/markdown": "*@dev",
-        "twig/twig": "*@stable",
+        "phly/mustache": "~1.0",
+        "dflydev/markdown": "~1.0",
+        "twig/twig": "~1.0",
         "richthegeek/phpsass": "*@dev",
-        "jsonbuilder/jsonbuilder": "*@dev"
+        "jsonbuilder/jsonbuilder": "*@dev",
+        "chh/bob": "1.0.*@dev",
+        "phpunit/phpunit": "~3.7"
     },
     "suggest": {
         "phly/mustache": "Enable .mustache support",

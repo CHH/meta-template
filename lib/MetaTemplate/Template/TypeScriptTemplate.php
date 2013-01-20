@@ -27,12 +27,10 @@ class TypeScriptTemplate extends Base
             );
         }
 
-        $inputFile = tempnam(sys_get_temp_dir(), 'pipe_typescript_input_');
-        chmod($inputFile, 0666);
+        $inputFile = sys_get_temp_dir() . '/pipe_typescript_input_' . uniqid() . '.ts';
         file_put_contents($inputFile, $this->getData());
 
-        $outputFile = tempnam(sys_get_temp_dir(), 'pipe_typescript_output_');
-        chmod($outputFile, 0666);
+        $outputFile = tempnam(sys_get_temp_dir(), 'pipe_typescript_output_') . '.js';
 
         $cmd .= " --out " . escapeshellarg($outputFile) . ' ' . escapeshellarg($inputFile);
 
