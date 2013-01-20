@@ -73,7 +73,8 @@ class Template
             'SassTemplate'         => array('scss', 'sass'),
             'CoffeeScriptTemplate' => array('coffee'),
             'TwigTemplate'         => array('twig'),
-            'JSONBuilderTemplate'  => array('jsonbuilder')
+            'JSONBuilderTemplate'  => array('jsonbuilder'),
+            'TypeScriptTemplate'   => array('.ts')
         );
 
         foreach ($defaultEngines as $engine => $extensions) {
