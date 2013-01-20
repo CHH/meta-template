@@ -45,10 +45,6 @@ class TypeScriptTemplate extends Base
         }
 
         $process->run();
-
-        $data = file_get_contents($outputFile);
-
-        unlink($outputFile);
         unlink($inputFile);
 
         if ($process->getErrorOutput()) {
@@ -56,6 +52,9 @@ class TypeScriptTemplate extends Base
                 "tsc({$this->source}) returned an error:\n {$process->getErrorOutput()}"
             );
         }
+
+        $data = file_get_contents($outputFile);
+        unlink($outputFile);
 
         return $data;
     }
