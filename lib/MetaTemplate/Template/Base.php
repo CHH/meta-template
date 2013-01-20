@@ -31,9 +31,9 @@ abstract class Base implements TemplateInterface
      *   contents or the template's file name
      * @param array  $options  Engine Options
      */
-    function __construct($source = null, $options = null, $reader = null)
+    function __construct()
     {
-        foreach (array_filter(array($source, $options, $reader)) as $arg) {
+        foreach (array_filter(func_get_args()) as $arg) {
             switch (true) {
                 case is_callable($arg):
                     $reader = $arg;
