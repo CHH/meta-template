@@ -19,9 +19,6 @@ class LessTemplate extends Base
         $options  = $this->options;
         $compress = @$options["compress"] ?: false;
 
-        $inputFile = tempnam(sys_get_temp_dir(), 'metatemplate_template_less_input');
-        file_put_contents($inputFile, $this->data);
-
         $outputFile = tempnam(sys_get_temp_dir(), 'metatemplate_template_less_output');
 
         $finder = new ExecutableFinder;
@@ -39,9 +36,17 @@ class LessTemplate extends Base
             $cmd .= ' -x';
         }
 
-        $cmd .= " $inputFile $outputFile";
+        if (array_key_exists('include_path', $this->options)) {
+            $cmd .= sprintf(
+                '--include-path %s', 
+                escapeshellarg(join(PATH_SEPARATOR, (array) $this->options['include_path']))
+            );
+        }
+
+        $cmd .= " --no-color - $outputFile";
 
         $process = new Process($cmd);
+        $process->setStdin($this->getData());
 
         if ($this->isFile()) {
             $process->setWorkingDirectory(dirname($this->source));
@@ -52,13 +57,13 @@ class LessTemplate extends Base
         ));
 
         $process->run();
-        $content = file_get_contents($outputFile);
 
-        unlink($outputFile);
+        $content = @file_get_contents($outputFile);
+        @unlink($outputFile);
 
         if (!$process->isSuccessful()) {
             throw new \RuntimeException(
-                "lessc returned an error: " . $process->getErrorOutput()
+                "$cmd returned an error: " . $process->getErrorOutput()
             );
         }
 
