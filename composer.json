@@ -33,7 +33,8 @@
         "dflydev/markdown": "Enable .md, .markdown support",
         "twig/twig": "Enable .twig support",
         "richthegeek/phpsass": "Enable .sass, .scss support",
-        "jsonbuilder/jsonbuilder": "Enable .jsonbuilder support"
+        "jsonbuilder/jsonbuilder": "Enable .jsonbuilder support",
+        "coffeescript/coffeescript": "Pure PHP solution for coffeescript"
     },
     "autoload": {
         "psr-0": {
