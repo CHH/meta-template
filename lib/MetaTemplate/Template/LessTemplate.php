@@ -38,7 +38,7 @@ class LessTemplate extends Base
 
         if (array_key_exists('include_path', $this->options)) {
             $cmd .= sprintf(
-                '--include-path %s', 
+                '--include-path %s',
                 escapeshellarg(join(PATH_SEPARATOR, (array) $this->options['include_path']))
             );
         }
