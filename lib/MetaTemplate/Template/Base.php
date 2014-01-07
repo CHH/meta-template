@@ -31,9 +31,9 @@ abstract class Base implements TemplateInterface
      *   contents or the template's file name
      * @param array  $options  Engine Options
      */
-    function __construct($source = null, $options = null, $reader = null)
+    function __construct()
     {
-        foreach (array_filter(array($source, $reader, $options)) as $arg) {
+        foreach (array_filter(func_get_args()) as $arg) {
             switch (true) {
                 case is_callable($arg):
                     $reader = $arg;
@@ -47,16 +47,20 @@ abstract class Base implements TemplateInterface
             }
         }
 
-        if (is_callable($reader)) {
+        if (isset($reader)) {
             $this->data = call_user_func($reader, $this);
-
-        } else if (file_exists($this->source) and is_readable($this->source)) {
+        } else if (is_file($this->source)) {
             $this->data = @file_get_contents($this->source);
         } else {
             throw new \UnexpectedValueException("{$this->source} is not a file or not readable.");
         }
 
         $this->prepare();
+    }
+
+    function getExtension()
+    {
+        return pathinfo($this->source, PATHINFO_EXTENSION);
     }
 
     /**

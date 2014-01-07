@@ -6,19 +6,21 @@ use MetaTemplate\Template\LessTemplate;
 
 class LessTemplateTest extends \PHPUnit_Framework_TestCase
 {
-    function test()
+    function setUp()
     {
-        $fixture = __DIR__ . "/fixtures/less/screen.less";
-
-        if (empty($_ENV['LESS_BIN'])) {
-            $this->markTestSkipped(
-                'Set $_ENV[\'LESS_BIN\'] if you want to test LessTemplate'
+        if (empty($_ENV['LESS_PATH'])) {
+            return $this->markTestSkipped(
+                'Set $_ENV[\'LESS_PATH\'] if you want to test LessTemplate'
             );
         }
 
-        $template = new LessTemplate($fixture, array(
-            'less_bin' => $_ENV['LESS_BIN']
-        ));
+        putenv("PATH=" . join(PATH_SEPARATOR, array(getenv("PATH"), dirname($_ENV["LESS_PATH"]))));
+    }
+
+    function test()
+    {
+        $fixture = __DIR__ . "/fixtures/less/screen.less";
+        $template = new LessTemplate($fixture);
 
         $assert = <<<CSS
 #nav-main {

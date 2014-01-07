@@ -2,9 +2,14 @@
 
 namespace MetaTemplate\Template;
 
-class PHPTemplate extends Base
+class PhpTemplate extends Base
 {
     protected $templates = array();
+
+    static function getDefaultContentType()
+    {
+        return "text/html";
+    }
 
     function render($context = null, $vars = array())
     {
@@ -35,6 +40,11 @@ class PHPTemplate extends Base
         $classTemplate = $this->getTemplateTemplate();
 
         eval(sprintf($classTemplate, $id, $source));
+
+        if (!class_exists($templateClass)) {
+            # Something went wrong.
+            throw new \UnexpectedValueException("Something went wrong.");
+        }
 
         return new $templateClass;
     }
@@ -67,10 +77,10 @@ class PHPTemplate extends Base
 
                 case T_OPEN_TAG:
                 case T_CLOSE_TAG:
+                    $compiled .= ';';
                     break;
 
                 case T_INLINE_HTML:
-                    $content = addslashes($content);
                     $compiled .= sprintf('echo %s;', var_export($content, true));
                     break;
 

@@ -3,6 +3,7 @@
 namespace MetaTemplate;
 
 use MetaTemplate\Util\EngineRegistry;
+use CHH\FileUtils\Path;
 
 class Template
 {
@@ -15,6 +16,11 @@ class Template
             static::$engines = new EngineRegistry;
         }
         return static::$engines;
+    }
+
+    static function setDefaultOptions($engine, $options = array())
+    {
+        static::getEngines()->setDefaultOptions($engine, $options);
     }
 
     /**
@@ -55,19 +61,25 @@ class Template
 
     static function normalizeExtension($extension)
     {
-        $extension = strtolower($extension);
-
-        if ('.' == $extension[0]) {
-            $extension = substr($extension, 1);
-        }
-        return $extension;
+        return Path::normalizeExtension($extension);
     }
 
     static function setupDefaultEngines()
     {
-        static::register('\\MetaTemplate\\Template\\PHPTemplate', array('php', 'phtml'));
-        static::register('\\MetaTemplate\\Template\\LessTemplate', 'less');
-        static::register('\\MetaTemplate\\Template\\MarkdownTemplate', array('markdown', 'md'));
+        $defaultEngines = array(
+            'PhpTemplate'          => array('php', 'phtml'),
+            'LessTemplate'         => array('less'),
+            'MarkdownTemplate'     => array('md', 'markdown'),
+            'SassTemplate'         => array('scss', 'sass'),
+            'CoffeeScriptTemplate' => array('coffee'),
+            'TwigTemplate'         => array('twig'),
+            'JSONBuilderTemplate'  => array('jsonbuilder'),
+            'TypeScriptTemplate'   => array('.ts')
+        );
+
+        foreach ($defaultEngines as $engine => $extensions) {
+            static::register("\\MetaTemplate\\Template\\$engine", $extensions);
+        }
     }
 }
 

@@ -1,8 +1,9 @@
-<phpunit bootstrap="./tests/bootstrap.php">
+<phpunit bootstrap="./tests/bootstrap.php" convertNoticesToExceptions="false">
     <php>
         <!--
-        <env name="MARKDOWN_LIB" value="" />
-        <env name="LESS_BIN" value="/usr/local/bin/lessc" />
+        <env name="LESS_PATH" value="/usr/local/bin" />
+        <env name="COFFEE_PATH" value="/usr/local/bin" />
+        <env name="TSC_PATH" value="/usr/local/bin" />
         -->
     </php>
     <testsuites>

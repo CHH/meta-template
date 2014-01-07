@@ -8,6 +8,11 @@ class MustacheTemplate extends Base
 {
     protected $mustache;
 
+    static function getDefaultContentType()
+    {
+        return "text/html";
+    }
+
     function render($context = null, $vars = array())
     {
         $mustache = $this->getMustache();

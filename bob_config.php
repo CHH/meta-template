@@ -4,7 +4,7 @@
  * otherwise you would've to call the `task` and
  * `desc` functions with a `Bob\` prefix.
  */
-namespace Bob;
+namespace Bob\BuildConfig;
 
 task('default', array('test'));
 
