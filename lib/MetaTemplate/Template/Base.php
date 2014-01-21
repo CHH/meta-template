@@ -87,4 +87,13 @@ abstract class Base implements TemplateInterface
             return '';
         }
     }
+
+    function option($option, $default = null)
+    {
+        if (array_key_exists($option, $this->options)) {
+            return $this->options[$option];
+        }
+
+        return $default;
+    }
 }

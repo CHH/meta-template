@@ -13,7 +13,6 @@
             "homepage": "http://christophh.net"
         }
     ],
-    "minimum-stability": "dev",
     "require": {
         "php": ">=5.3.6",
         "symfony/process": "~2.1",
@@ -26,7 +25,8 @@
         "richthegeek/phpsass": "*@dev",
         "jsonbuilder/jsonbuilder": "*@dev",
         "chh/bob": "1.0.*@dev",
-        "phpunit/phpunit": "~3.7"
+        "phpunit/phpunit": "~3.7",
+        "chh/mustache-js-compiler": "~1.0"
     },
     "suggest": {
         "phly/mustache": "Enable .mustache support",
@@ -34,7 +34,8 @@
         "twig/twig": "Enable .twig support",
         "richthegeek/phpsass": "Enable .sass, .scss support",
         "jsonbuilder/jsonbuilder": "Enable .jsonbuilder support",
-        "coffeescript/coffeescript": "Pure PHP solution for coffeescript"
+        "coffeescript/coffeescript": "Pure PHP solution for coffeescript",
+        "chh/mustache-js-compiler": "Enable compilation of Mustache templates to client side code"
     },
     "autoload": {
         "psr-0": {
